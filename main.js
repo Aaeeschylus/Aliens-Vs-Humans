@@ -28,6 +28,9 @@ function getDeltaTime() {
 
 //-------------------- Don't modify anything above here
 
+var livesImage = document.createElement("img");
+livesImage.src = "ship01small.png";
+
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -59,6 +62,8 @@ function rand(floor, ceil)
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
+
+var lives = 3;
 
 var enemies = [];
 var bullets = [];

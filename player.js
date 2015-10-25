@@ -6,7 +6,7 @@ var Player = function() {
 	this.images[1] = new Image();
 	this.images[1].src = "ship02.png"
 	this.images[2] = new Image();
-	this.images[2].src = "ship03.png"
+	this.images[2].src = "ship16.png"
 
 	this.upgradeLevel = 0;
 	
@@ -19,6 +19,17 @@ var Player = function() {
 
 Player.prototype.update = function(deltaTime)
 {
+	if(keyboard.isKeyDown(keyboard.KEY_1) == true) {
+		this.upgradeLevel = 0;
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_2) == true) {
+		this.upgradeLevel = 1;
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_3) == true) {
+		this.upgradeLevel = 2;
+	}
+
+
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true) {
 		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
 			if(this.position.x >= 40) 

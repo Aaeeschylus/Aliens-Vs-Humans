@@ -20,6 +20,11 @@ GameLevel1.prototype.update = function(dt)
 		bullets[i].update(deltaTime);
 	}
 
+	for(var i=0; i<lives; i++)
+	{
+		context.drawImage(livesImage, 20 + ((livesImage.width+2)*i), 10)
+	}
+	
 	player.update();
 }
 
