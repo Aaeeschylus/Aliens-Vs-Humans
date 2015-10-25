@@ -60,6 +60,11 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+var enemies = [];
+var bullets = [];
+
+var deltaTime = getDeltaTime();
+
 var PLAYER_SPEED = 4;
 
 var DEBUG = 1;		// set to 0 to turn off drawing debug information
@@ -67,6 +72,17 @@ var DEBUG = 1;		// set to 0 to turn off drawing debug information
 var stateManager = new StateManager();
 
 stateManager.pushState( new SplashState() );
+
+function playerShoot()
+{
+	var bullet = new Bullet(player.position.x, player.position.y);
+	bullets.push(bullet);
+	var bullet = new Bullet(player.position.x, player.position.y - bullet.height);
+	bullets.push(bullet);
+	var bullet = new Bullet(player.position.x, player.position.y - (bullet.height * 2));
+	bullets.push(bullet);
+	
+}
 
 function run() {
 	context.fillStyle = "#ccc";

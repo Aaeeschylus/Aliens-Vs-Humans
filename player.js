@@ -19,32 +19,64 @@ var Player = function() {
 
 Player.prototype.update = function(deltaTime)
 {
-	if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
-		if(this.position.x >= 40) 
-		{
-			this.position.x -= 6;
+	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true) {
+		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
+			if(this.position.x >= 40) 
+			{
+				this.position.x -= 3;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
+			if(this.position.x <= (SCREEN_WIDTH - 40)) 
+			{
+				this.position.x += 3;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_UP) == true) {
+			if(this.position.y >= 40)
+			{
+				this.position.y -= 3;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_DOWN) == true) {
+			if(this.position.y <= (SCREEN_HEIGHT - 40))
+			{
+				this.position.y += 3;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
+			playerShoot();
 		}
 	}
-	if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
-		if(this.position.x <= (SCREEN_WIDTH - 40)) 
-		{
-			this.position.x += 6;
+	else {
+		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
+			if(this.position.x >= 40) 
+			{
+				this.position.x -= 8;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
+			if(this.position.x <= (SCREEN_WIDTH - 40)) 
+			{
+				this.position.x += 8;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_UP) == true) {
+			if(this.position.y >= 40)
+			{
+				this.position.y -= 8;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_DOWN) == true) {
+			if(this.position.y <= (SCREEN_HEIGHT - 40))
+			{
+				this.position.y += 8;
+			}
+		}
+		if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
+			playerShoot();
 		}
 	}
-	if(keyboard.isKeyDown(keyboard.KEY_UP) == true) {
-		if(this.position.y >= 40)
-		{
-			this.position.y -= 6;
-		}
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_DOWN) == true) {
-		if(this.position.y <= (SCREEN_HEIGHT - 40))
-		{
-			this.position.y += 6;
-		}
-	}
-	
-	
 }
 
 
