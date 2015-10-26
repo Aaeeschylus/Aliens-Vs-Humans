@@ -15,6 +15,8 @@ GameLevel1.prototype.unload = function()
 
 GameLevel1.prototype.update = function(dt) 
 {
+	
+	
 	for(var i=0; i<bullets.length; i++)
 	{
 		bullets[i].update(deltaTime);

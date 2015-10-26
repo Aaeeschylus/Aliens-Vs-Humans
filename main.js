@@ -68,6 +68,8 @@ var lives = 3;
 var enemies = [];
 var bullets = [];
 
+
+
 var deltaTime = getDeltaTime();
 
 var PLAYER_SPEED = 4;
@@ -80,13 +82,18 @@ stateManager.pushState( new SplashState() );
 
 function playerShoot()
 {
-	var bullet = new Bullet(player.position.x, player.position.y);
-	bullets.push(bullet);
-	var bullet = new Bullet(player.position.x, player.position.y - bullet.height);
-	bullets.push(bullet);
-	var bullet = new Bullet(player.position.x, player.position.y - (bullet.height * 2));
-	bullets.push(bullet);
-	
+	if(player.shootSet <= 9){		
+		var bullet = new Bullet(player.position.x , player.position.y);
+		bullets.push(bullet);
+		var bullet = new Bullet(player.position.x, player.position.y - bullet.height);
+		bullets.push(bullet);
+		// var bullet = new Bullet(player.position.x, player.position.y - (bullet.height * 2));
+		// bullets.push(bullet);
+		player.shootSet += 1;
+	}
+	else{
+		player.shootSet = 4;
+	}
 }
 
 function run() {
