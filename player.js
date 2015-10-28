@@ -1,5 +1,5 @@
 var Player = function() {
-	
+	this.lives = 3;
 	this.images = [];
 	this.images[0] = new Image();
 	this.images[0].src = "ship01.png";
@@ -28,7 +28,10 @@ Player.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_3) == true) {
 		this.upgradeLevel = 2;
 	}
-
+	
+	if(keyboard.isKeyDown(keyboard.KEY_NUM1) == true) {
+		enemySpawn();
+	}
 
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true) {
 		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {

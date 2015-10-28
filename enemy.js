@@ -1,23 +1,34 @@
-var Enemy = function() {
-	this.image = document.createElement("img");
-	this.x = canvas.width/2;
-	this.y = canvas.height/2;
+var Enemy = function(x, y) {
+	// this.sprite = new Sprite("enemysheet.png");
+	// this.sprite.buildAnimation(3, 4, 100, 100, 0.1, 
+	// [3, 4, 5]);
+	// this.sprite.buildAnimation(3, 4, 100, 100, 0.1,
+	// [6, 7, 8]);
+	
+	// for(var i=0; i<ENEMY_ANIM_MAX; i++)
+	// {
+		// this.sprite.setAnimationOffset(i, -30, -30);
+	// }
+	this.image = new Image();
+	this.image.src = "enemy01.png";
 	this.width = 68;
-	this.height = 64;
-	this.image.src = "ship05.png";
+	this.height = 60; 
+	this.position = new Vector2();
+	this.position.set(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+	this.velocity = new Vector2();
 };
-
+ 
 Enemy.prototype.update = function(deltaTime)
 {
-	if( typeof(this.rotation) == "undefined" )
-		this.rotation= 180;  	
+	
 }
 
 Enemy.prototype.draw = function()
 {
-	context.save();
-		context.translate(this.x, this.y);
-		context.rotate(this.rotation);
-		context.drawImage(this.image, -this.width/2, -this.height/2);
-	context.restore();
+	context.drawImage(this.image, SCREEN_WIDTH/2 - this.width/2, SCREEN_HEIGHT/2 - this.height/2);
 }
+
+// Enemy.prototype.draw = function()
+// {
+	// this.sprite.draw(context, this.position.x - worldOffsetX, this.position.y - worldOffsetY);
+// }

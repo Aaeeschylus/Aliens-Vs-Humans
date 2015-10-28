@@ -63,18 +63,14 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
-var lives = 3;
-
 var enemies = [];
 var bullets = [];
-
-
 
 var deltaTime = getDeltaTime();
 
 var PLAYER_SPEED = 4;
 
-var DEBUG = 1;		// set to 0 to turn off drawing debug information
+var DEBUG = 1;
 
 var stateManager = new StateManager();
 
@@ -87,13 +83,17 @@ function playerShoot()
 		bullets.push(bullet);
 		var bullet = new Bullet(player.position.x, player.position.y - bullet.height);
 		bullets.push(bullet);
-		// var bullet = new Bullet(player.position.x, player.position.y - (bullet.height * 2));
-		// bullets.push(bullet);
 		player.shootSet += 1;
 	}
 	else{
 		player.shootSet = 4;
 	}
+}
+
+function enemySpawn()
+{
+	var enemy = new Enemy();
+	enemies.push(enemy);
 }
 
 function run() {
