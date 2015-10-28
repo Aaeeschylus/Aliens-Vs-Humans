@@ -24,6 +24,8 @@ var Keyboard = function() {
 	this.KEY_8 = 56;
 	this.KEY_9 = 57;
 	
+	this.KEY_NUM1 = 97;
+	
 	this.KEY_A = 65;
 	this.KEY_D = 68;
 	this.KEY_S = 83;
