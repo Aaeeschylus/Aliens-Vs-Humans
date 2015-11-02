@@ -90,11 +90,20 @@ function playerShoot()
 	}
 }
 
-function enemySpawn()
+function NenemySpawn()
 {
-	var enemy = new Enemy();
-	enemies.push(enemy);
+	var Nenemy = new NormEnemy();
+	enemies.push(Nenemy);
 }
+
+function NenemySpawnZigZag()
+{
+	var NZZenemy = new NormEnemy ();
+	NZZenemy.position.set(SCREEN_WIDTH/2, 10);
+	NZZenemy.ZigZagMovement = true;
+	enemies.push(NZZenemy);
+}
+
 
 function run() {
 	context.fillStyle = "#ccc";
@@ -106,6 +115,7 @@ function run() {
 	
 	stateManager.draw();
 	
+
 	if(DEBUG == 1)
 	{	
 			// update the frame counter 
@@ -123,11 +133,6 @@ function run() {
 		context.font="14px Arial";
 		context.fillText("FPS: " + fps, 5, 20, 100);
 	}
-	
-	// draw the FPS
-	context.fillStyle = "#f00";
-	context.font = "14px Arial";
-	context.fillText("FPS: " + fps, 5, 20, 100);
 }
 
 //-------------------- Don't modify anything below here

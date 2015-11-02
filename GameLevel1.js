@@ -42,7 +42,7 @@ GameLevel1.prototype.update = function(dt)
 				enemies.splice(j, 1);
 				hit = true;
 				break;
-			}
+			} 
 		}
 		if(hit == true)
 		{

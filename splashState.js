@@ -22,6 +22,7 @@ SplashState.prototype.update = function(dt)
 
 SplashState.prototype.draw = function() 
 {
+	player.lives = 3;
 	context.font="72px Verdana";	
 	context.fillStyle = "#FF0";	
 	var width =  context.measureText("SPLASH SCREEN").width;

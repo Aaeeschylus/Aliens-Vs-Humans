@@ -30,9 +30,14 @@ Player.prototype.update = function(deltaTime)
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_NUM1) == true) {
-		enemySpawn();
+		NenemySpawn();
 	}
 
+	if(keyboard.isKeyDown(keyboard.KEY_NUM2) == true) {
+		NenemySpawnZigZag();
+	}
+
+	
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true) {
 		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
 			if(this.position.x >= 40) 
