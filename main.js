@@ -31,6 +31,12 @@ function getDeltaTime() {
 var livesImage = document.createElement("img");
 livesImage.src = "ship01small.png";
 
+var backgroundOffset = 0;
+
+
+var backgroundImage = document.createElement("img");
+backgroundImage.src = "background01.png";
+
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -56,6 +62,12 @@ function rand(floor, ceil)
 	return Math.floor( (Math.random()* (ceil-floor)) +floor);
 }
 
+var totalTime = 0;
+
+function totalTimeUpdate(){
+	totalTime = totalTime + deltaTime;
+}
+
 // some variables to calculate the Frames Per Second (FPS - this tells use
 // how fast our game is running, and allows us to make the game run at a 
 // constant speed)
@@ -70,7 +82,7 @@ var deltaTime = getDeltaTime();
 
 var PLAYER_SPEED = 4;
 
-var DEBUG = 1;
+var DEBUG = 0;
 
 var stateManager = new StateManager();
 
@@ -96,10 +108,11 @@ function NenemySpawn()
 	enemies.push(Nenemy);
 }
 
-function NenemySpawnZigZag()
+function NenemySpawnZigZag(zigZagPosition)
 {
 	var NZZenemy = new NormEnemy ();
-	NZZenemy.position.set(SCREEN_WIDTH/2, 10);
+	NZZenemy.zigZagMean = zigZagPosition;
+	NZZenemy.position.set(zigZagPosition, 10);
 	NZZenemy.ZigZagMovement = true;
 	enemies.push(NZZenemy);
 }

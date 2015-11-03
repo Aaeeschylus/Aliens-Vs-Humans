@@ -34,7 +34,11 @@ Player.prototype.update = function(deltaTime)
 	}
 
 	if(keyboard.isKeyDown(keyboard.KEY_NUM2) == true) {
-		NenemySpawnZigZag();
+		NenemySpawnZigZag(SCREEN_WIDTH/2);
+	}
+	
+	if(keyboard.isKeyDown(keyboard.KEY_NUM3) == true) {
+		NenemySpawnZigZag(SCREEN_WIDTH/4);
 	}
 
 	

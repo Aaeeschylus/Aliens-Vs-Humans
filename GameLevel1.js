@@ -16,6 +16,13 @@ GameLevel1.prototype.unload = function()
 
 GameLevel1.prototype.update = function(dt) 
 {
+	totalTimeUpdate();
+	
+	context.clearRect(0,0,canvas.width, canvas.height);
+	
+	//Draw Background
+	++backgroundOffset;
+	
 	for(var i=0; i<enemies.length; i++)
 	{
 		enemies[i].update(deltaTime);
@@ -73,6 +80,17 @@ GameLevel1.prototype.update = function(dt)
 
 GameLevel1.prototype.draw = function() 
 {
+	context.drawImage(backgroundImage, -100, backgroundOffset);
+ 
+	if (backgroundOffset >= 0 && backgroundOffset <= canvas.height) {
+		context.drawImage(backgroundImage, -100, backgroundOffset - backgroundImage.height + 2);
+	}
+	 
+	//Scrolling off the bottom of the screen
+	if (backgroundOffset >= canvas.height) {
+		backgroundOffset = canvas.height - backgroundImage.height;
+	}
+	
 	for(var i=0; i<bullets.length; i++)
 	{
 		bullets[i].draw();
