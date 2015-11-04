@@ -1,7 +1,7 @@
 var Bullet = function(x, y)
 {
-	this.sprite = new Sprite("playerBullet.png");
-	this.sprite.buildAnimation(1, 1, 14, 17, -1, [0]);
+	this.sprite = new Sprite("playerBullet01.png");
+	this.sprite.buildAnimation(1, 1, 14, 13, -1, [0]);
 	this.sprite.setAnimationOffset(0, 0, 0);
 	this.sprite.setLoop(0, false);
 	this.width = 14;
@@ -10,12 +10,11 @@ var Bullet = function(x, y)
 	this.position = new Vector2();
 	this.position.set(x, y);
 	this.velocity = new Vector2();
-	this.velocity.set(0, -(this.shootSet + "0000"));
+	this.velocity.set(0, -(this.shootSet * 10000));    
 }
 
 Bullet.prototype.update = function(deltaTime)
 {
-	this.sprite.update(deltaTime);
 	this.position.y = Math.floor(this.position.y + (0.001 * this.velocity.y));
 } 
 Bullet.prototype.draw = function()

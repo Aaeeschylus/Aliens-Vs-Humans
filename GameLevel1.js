@@ -33,9 +33,9 @@ GameLevel1.prototype.update = function(dt)
 		bullets[i].update(deltaTime);
 	}
 
-	var hit=false;
 	for(var i=0; i<bullets.length; i++)
 	{
+	var hit=false;
 		bullets[i].update(deltaTime);
 		if( bullets[i].position.y < -50)
 		{
@@ -46,7 +46,11 @@ GameLevel1.prototype.update = function(dt)
 			if(intersects( bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, enemies[j].position.x, enemies[j].position.y, enemies[j].width, enemies[j].height) == true)
 			{
 				// kill both the bullet and the enemy
-				enemies.splice(j, 1);
+				enemies[j].health -= 1;
+				if(enemies[j].health <= 0)
+				{
+					enemies.splice(j, 1);
+				}
 				hit = true;
 				break;
 			} 
@@ -54,7 +58,7 @@ GameLevel1.prototype.update = function(dt)
 		if(hit == true)
 		{
 			bullets.splice(i, 1);
-			break;
+			i = i - 1;
 		}
 	}
 	

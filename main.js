@@ -90,15 +90,11 @@ stateManager.pushState( new SplashState() );
 
 function playerShoot()
 {
-	if(player.shootSet <= 9){		
-		var bullet = new Bullet(player.position.x , player.position.y);
+	var BULLET_STREAM_COUNT = 10;
+	var BULLET_STREAM_STRIDE = 80;
+	for (var i = 0; i < BULLET_STREAM_COUNT; ++i) {
+		var bullet = new Bullet(player.position.x + 0.6, player.position.y - (i / BULLET_STREAM_COUNT) * BULLET_STREAM_STRIDE);
 		bullets.push(bullet);
-		var bullet = new Bullet(player.position.x, player.position.y - bullet.height);
-		bullets.push(bullet);
-		player.shootSet += 1;
-	}
-	else{
-		player.shootSet = 4;
 	}
 }
 
@@ -108,12 +104,35 @@ function NenemySpawn()
 	enemies.push(Nenemy);
 }
 
-function NenemySpawnZigZag(zigZagPosition)
+function NAenemySpawn(startX, startY, AngleOfEnter)
+{
+	var NAenemy = new NormEnemy();
+	
+	NAenemy.position.set(startX, startY);
+	NAenemy.angleMovement = true;
+	
+	var velX = 0;
+	var velY = 1;
+	
+	var s = Math.sin(AngleOfEnter);
+	var c = Math.cos(AngleOfEnter);
+	
+	var xVel = (velX * c) - (velY * s);
+	var yVel = (velX * s) + (velY * c);
+	
+	NAenemy.velocityX = xVel * 2;
+	NAenemy.velocityY = yVel * 2;
+	
+	enemies.push(NAenemy);
+}
+
+function NenemySpawnZigZag(zigZagPosition, Sdirection)
 {
 	var NZZenemy = new NormEnemy ();
 	NZZenemy.zigZagMean = zigZagPosition;
 	NZZenemy.position.set(zigZagPosition, 10);
 	NZZenemy.ZigZagMovement = true;
+	NZZenemy.direction = Sdirection;
 	enemies.push(NZZenemy);
 }
 

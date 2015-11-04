@@ -34,13 +34,16 @@ Player.prototype.update = function(deltaTime)
 	}
 
 	if(keyboard.isKeyDown(keyboard.KEY_NUM2) == true) {
-		NenemySpawnZigZag(SCREEN_WIDTH/2);
+		NenemySpawnZigZag(SCREEN_WIDTH/2 , -1);
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_NUM3) == true) {
-		NenemySpawnZigZag(SCREEN_WIDTH/4);
+		NenemySpawnZigZag(SCREEN_WIDTH/2, 1);
 	}
 
+	if(keyboard.isKeyDown(keyboard.KEY_NUM4) == true) {
+		NAenemySpawn(200, 200, 6);
+	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true) {
 		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
