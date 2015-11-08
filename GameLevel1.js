@@ -17,8 +17,11 @@ GameLevel1.prototype.unload = function()
 GameLevel1.prototype.update = function(dt) 
 {
 	totalTimeUpdate();
+	level1TotalTimeUpdate();
 	
 	context.clearRect(0,0,canvas.width, canvas.height);
+	
+	level1Spawning();
 	
 	//Draw Background
 	++backgroundOffset;

@@ -98,9 +98,10 @@ function playerShoot()
 	}
 }
 
-function NenemySpawn()
+function NenemySpawn(startX)
 {
 	var Nenemy = new NormEnemy();
+	Nenemy.position.x = startX;
 	enemies.push(Nenemy);
 }
 
