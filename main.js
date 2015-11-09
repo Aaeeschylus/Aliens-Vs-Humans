@@ -74,6 +74,9 @@ function totalTimeUpdate(){
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
+var hits = 0
+var sps = 0;
+var kills = 0;
 
 var enemies = [];
 var bullets = [];
@@ -82,7 +85,7 @@ var deltaTime = getDeltaTime();
 
 var PLAYER_SPEED = 4;
 
-var DEBUG = 0;
+var DEBUG = 1;
 
 var stateManager = new StateManager();
 
@@ -98,16 +101,20 @@ function playerShoot()
 	}
 }
 
-function NenemySpawn(startX)
+function NenemySpawn(startX, health)
 {
 	var Nenemy = new NormEnemy();
 	Nenemy.position.x = startX;
+	Nenemy.health = health;
 	enemies.push(Nenemy);
+	sps += 1;
 }
 
-function NAenemySpawn(startX, startY, AngleOfEnter)
+function NAenemySpawn(startX, startY, AngleOfEnter, health)
 {
 	var NAenemy = new NormEnemy();
+	
+	NAenemy.health = health;
 	
 	NAenemy.position.set(startX, startY);
 	NAenemy.angleMovement = true;
@@ -124,17 +131,23 @@ function NAenemySpawn(startX, startY, AngleOfEnter)
 	NAenemy.velocityX = xVel * 2;
 	NAenemy.velocityY = yVel * 2;
 	
-	enemies.push(NAenemy);
+	enemies.push(NAenemy);	
+	sps += 1;
 }
 
-function NenemySpawnZigZag(zigZagPosition, Sdirection)
+function NenemySpawnZigZag(zigZagPosition, Sdirection, sidedistance, sidespeed, OffSet, health)
 {
 	var NZZenemy = new NormEnemy ();
+	NZZenemy.health = health;
 	NZZenemy.zigZagMean = zigZagPosition;
-	NZZenemy.position.set(zigZagPosition, 10);
+	NZZenemy.sideSpeeed = sidespeed;
+	NZZenemy.offset = OffSet;
+	NZZenemy.sideLength = sidedistance;
+	NZZenemy.position.set(zigZagPosition, -50);
 	NZZenemy.ZigZagMovement = true;
 	NZZenemy.direction = Sdirection;
 	enemies.push(NZZenemy);
+	sps += 1;
 }
 
 
@@ -161,10 +174,20 @@ function run() {
 			fpsCount = 0;
 		}		
 		
+		
+		
 		// draw the FPS
 		context.fillStyle = "#f00";
 		context.font="14px Arial";
 		context.fillText("FPS: " + fps, 5, 20, 100);
+		
+		context.fillStyle = "#f00";
+		context.font="14px Arial";
+		context.fillText("Spawns: " + sps, 500, 20, 100);
+		
+		context.fillStyle = "#f00";
+		context.font="14px Arial";
+		context.fillText("Hits: " + hits, 300, 20, 100);
 	}
 }
 

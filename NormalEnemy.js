@@ -8,6 +8,9 @@ var NormEnemy = function(x, y) {
 	this.velocity = new Vector2();
 	this.zigZagMean = 0;
 	this.health = 100;
+	this.sideLength = 100;
+	this.sideSpeed = 70;
+	this.offset = 0;
 	//1 = left, -1 = right
 	this.direction = 0;
 };
@@ -16,15 +19,15 @@ var NormEnemy = function(x, y) {
 NormEnemy.prototype.update = function(deltaTime)
 {
 	
-	var mathsSin = (100*(Math.sin(totalTime*70)));
+	var mathsSin = (this.sideLength*(Math.sin(totalTime*this.sideSpeed)));
 	if (this.ZigZagMovement == true && this.direction == 1)
 	{
-		this.position.x = this.zigZagMean + mathsSin;
+		this.position.x = this.zigZagMean + mathsSin + this.offset;
 		this.position.y += 1;
 	}
 	else if (this.ZigZagMovement == true && this.direction == -1)
 	{
-		this.position.x = this.zigZagMean - mathsSin;
+		this.position.x = this.zigZagMean - mathsSin + this.offset;
 		this.position.y += 1;
 	}
 	else if(this.angleMovement == true)

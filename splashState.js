@@ -16,14 +16,24 @@ SplashState.prototype.update = function(dt)
 {
 	if( keyboard.isKeyDown( keyboard.KEY_SPACE ) == true )
 	{
+		if (player.lives <= 0)
+		{
+			clearInterval(level1spawntimer);
+		}
+		sps = 0;
+		hits = 0;
+		kills = 0;
+		player.lives = 3;
+		levelseconds = 0;
+		enemies = [];
+		level1SpawningTimer();
 		stateManager.switchState( new GameLevel1() );
 	}
 }
 
 SplashState.prototype.draw = function() 
 {
-	player.lives = 3;
-	enemies = [];
+	
 	context.font="72px Verdana";	
 	context.fillStyle = "#FF0";	
 	var width =  context.measureText("SPLASH SCREEN").width;

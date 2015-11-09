@@ -17,11 +17,9 @@ GameLevel1.prototype.unload = function()
 GameLevel1.prototype.update = function(dt) 
 {
 	totalTimeUpdate();
-	level1TotalTimeUpdate();
+	level1Update();
 	
 	context.clearRect(0,0,canvas.width, canvas.height);
-	
-	level1Spawning();
 	
 	//Draw Background
 	++backgroundOffset;
@@ -53,9 +51,12 @@ GameLevel1.prototype.update = function(dt)
 				if(enemies[j].health <= 0)
 				{
 					enemies.splice(j, 1);
+					kills += 1;
 				}
 				hit = true;
+				hits += 1;
 				break;
+				
 			} 
 		}
 		if(hit == true)
@@ -82,6 +83,7 @@ GameLevel1.prototype.update = function(dt)
 		}
 	}
 	
+	
 	player.update();
 }
 
@@ -107,9 +109,19 @@ GameLevel1.prototype.draw = function()
 		enemies[i].draw();
 	}
 	
+	context.fillStyle = 'white';
+	context.strokeStyle = 'black';
+	context.font="24px Verdana";
+	context.fillText("Lives: ", 20, 40, 200);
+	context.strokeText("Lives: ", 20, 40, 200);
+
+	context.font="24px Verdana";
+	context.fillText("Kills: " + kills, SCREEN_WIDTH - 125, 40, 200);
+	context.strokeText("Kills: " + kills, SCREEN_WIDTH -  125, 40, 200);
+	
 	for(var i=0; i<player.lives; i++)
 	{
-		context.drawImage(livesImage, 20 + ((livesImage.width+2)*i), 10)
+		context.drawImage(livesImage, 100 + ((livesImage.width+2)*i), 20)
 	}
 	
 	player.draw();
