@@ -60,8 +60,8 @@ function level1Update(){
 		spawn3 = false;
 	}	
 	
-	if(keyboard.isKeyDown(keyboard.KEY_NUM1) == true) {
-		levelseconds = 27;
+	if(keyboard.isKeyDown(keyboard.KEY_1) == true) {
+		levelseconds = 40.5;
 	}
 	
 	if (levelseconds == 27.5 && spawn4 == false)
@@ -89,18 +89,32 @@ function level1Update(){
 		spawn4 = false;
 	}	
 	
-	// if (levelseconds == 1.5 && spawn5 == false)
-		// {
-		// fnzigzag1 = setInterval(function(){ 
-			// NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 100, 70, 200);
-			// }, 1000);
-			// spawn5 = true;
-		// }
-	// if (levelseconds == 8)
-	// {
-		// clearInterval(fnzigzag1);
-		// spawn5 = false;
-	// }	
+	if (levelseconds == 41.5 && spawn5 == false)
+	{
+		fnspawn5 = setInterval(function(){ 
+			NAenemySpawn(-40, 250, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, 250, 13.2, 25);
+			NAenemySpawn(-40, 50, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, 50, 13.2, 25);
+			NAenemySpawn(-40, 150, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, 150, 13.2, 25);
+			NAenemySpawn(-40, -50, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, -50, 13.2, 25);
+			NAenemySpawn(-40, -150, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, -150, 13.2, 25);
+			NAenemySpawn(-40, -250, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, -250, 13.2, 25);
+			NAenemySpawn(-40, -350, 12, 25);
+			NAenemySpawn(SCREEN_WIDTH + 40, -350, 13.2, 25);
+			
+		}, 700);
+		spawn5 = true;
+	}
+	if (levelseconds == 50)
+	{
+		clearInterval(fnspawn5);
+		spawn5 = false;
+	}	
 	
 	// if (levelseconds == 1.5 && spawn6 == false)
 		// {
