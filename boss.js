@@ -7,7 +7,7 @@ var BOSS01 = function(x, y) {
 	this.position = new Vector2();
 	this.position.set(SCREEN_WIDTH/2 - this.width/2 , -180 - this.height/2);
 	this.velocity = new Vector2();
-	this.health = 10000;
+	this.health = 1000;
 	this.shootTimer = 0;
 	this.dead = false;
 	this.spawn == false;

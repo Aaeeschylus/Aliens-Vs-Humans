@@ -14,7 +14,10 @@ loseState.prototype.unload = function()
 
 loseState.prototype.update = function(dt) 
 {
-	
+	if( keyboard.isKeyDown( keyboard.KEY_SPACE ) == true )
+	{
+		stateManager.switchState( new creditState() );
+	}
 }
 
 loseState.prototype.draw = function() 
@@ -30,9 +33,17 @@ loseState.prototype.draw = function()
 	context.fillStyle = 'white';
 	context.strokeStyle = 'black';
 	context.font="72px Verdana";
-	context.fillText("YOU LOSE", SCREEN_WIDTH/2 - 200, 450, 400);
-	context.strokeText("YOU LOSE", SCREEN_WIDTH/2 - 200, 450, 400);	
+	var width =  context.measureText("YOU LOSE").width;
+	context.fillText("YOU LOSE", SCREEN_WIDTH/2 - width/2, 450, 400);
+	context.strokeText("YOU LOSE", SCREEN_WIDTH/2 - width/2, 450, 400);	
+	
 	context.font = "36px Verdana";
-	context.fillText("Press F5 to try again!", SCREEN_WIDTH/2 - 200, 500, 400);
-	context.strokeText("Press F5 to try again!", SCREEN_WIDTH/2 - 200, 500, 400);		
+	width =  context.measureText("Press F5 to try again!").width;
+	context.fillText("Press F5 to try again!", SCREEN_WIDTH/2 - width/2, 500, 400);
+	context.strokeText("Press F5 to try again!", SCREEN_WIDTH/2 - width/2, 500, 400);	
+	
+	context.font = "24px Verdana";
+	width =  context.measureText("Press Space to see credits").width;
+	context.fillText("Press Space to see credits", SCREEN_WIDTH/2 - width/2, 875);
+	context.strokeText("Press Space to see credits", SCREEN_WIDTH/2 - width/2, 875);
 }

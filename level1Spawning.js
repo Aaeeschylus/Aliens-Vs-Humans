@@ -57,9 +57,10 @@ function level1Update(){
 		spawn3 = false;
 	}	
 	
-	if(keyboard.isKeyDown(keyboard.KEY_1) == true) {
-		levelseconds = 72;
-	}
+	//put this code in if you want to instantly skip to the boss. To use it, after starting the game (pressing space from start screen) press 1 within the first 3 seconds.
+	// if(keyboard.isKeyDown(keyboard.KEY_1) == true) {
+		// levelseconds = 72;
+	// }
 	
 	if (levelseconds == 27.5 && spawn4 == false)
 		{

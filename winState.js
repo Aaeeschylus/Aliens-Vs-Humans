@@ -14,7 +14,10 @@ winState.prototype.unload = function()
 
 winState.prototype.update = function(dt) 
 {
-	
+	if( keyboard.isKeyDown( keyboard.KEY_SPACE ) == true )
+	{
+		stateManager.switchState( new creditState() );
+	}
 }
 
 winState.prototype.draw = function() 
@@ -30,9 +33,11 @@ winState.prototype.draw = function()
 	context.fillStyle = 'white';
 	context.strokeStyle = 'black';
 	context.font="72px Verdana";
-	context.fillText("YOU WIN", SCREEN_WIDTH/2 - 190, 450, 400);
-	context.strokeText("YOU WIN", SCREEN_WIDTH/2 - 190, 450, 400);	
+	var width =  context.measureText("YOU WIN").width;
+	context.fillText("YOU WIN", SCREEN_WIDTH/2 - width/2, 450, 400);
+	context.strokeText("YOU WIN", SCREEN_WIDTH/2 - width/2, 450, 400);	
 	context.font = "36px Verdana";
-	context.fillText("You killed " + kills + "/" + sps + " enemies!", SCREEN_WIDTH/2 - 200, 500, 400);
-	context.strokeText("You killed " + kills + "/" + sps + " enemies!", SCREEN_WIDTH/2 - 200, 500, 400);	
+	width =  context.measureText("You killed 1069/1434 enemies!").width;
+	context.fillText("You killed " + kills + "/" + sps + " enemies!", SCREEN_WIDTH/2 - 220, 500, 900);
+	context.strokeText("You killed " + kills + "/" + sps + " enemies!", SCREEN_WIDTH/2 - 220, 500, 900);	
 }

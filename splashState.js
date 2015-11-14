@@ -50,13 +50,15 @@ SplashState.prototype.draw = function()
 		}
 	}
 	
-	context.font="72px Verdana";	
-	context.fillStyle = "#FF0";	
-	var width =  context.measureText("SPLASH SCREEN").width;
-	context.fillText("SPLASH SCREEN", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);		
+	context.fillStyle = 'white';
+	context.strokeStyle = 'black';
+	context.font="72px Verdana";
+	var width =  context.measureText("Intergalactic Warfare").width;
+	context.fillText("Intergalactic Warfare", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);
+	context.strokeText("Intergalactic Warfare", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);
 	
-	context.font="18px Verdana";	
-	context.fillStyle = "#000";	
+	context.font="32px Verdana";
 	width =  context.measureText("Press SPACE to Continue.").width;
-	context.fillText("Press SPACE to Continue.", SCREEN_WIDTH/2 - width/2, 300);	
+	context.fillText("Press SPACE to Continue.", SCREEN_WIDTH/2 - width/2, 500);
+	context.strokeText("Press SPACE to Continue.", SCREEN_WIDTH/2 - width/2, 500);
 }
