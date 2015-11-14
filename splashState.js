@@ -20,6 +20,15 @@ SplashState.prototype.update = function(dt)
 		{
 			clearInterval(level1spawntimer);
 		}
+		musicBackground = new Howl(
+		{
+			urls: ["epicMusic.wav"],
+			loop: true,
+			buffer: true,
+			volume: 0.5
+		});
+		musicBackground.play();
+		
 		sps = 0;
 		hits = 0;
 		kills = 0;
@@ -33,6 +42,13 @@ SplashState.prototype.update = function(dt)
 
 SplashState.prototype.draw = function() 
 {
+	for(var y=0; y<1; y++)
+	{
+		for(var x=0; x<1; x++)
+		{
+			context.drawImage(splashScreen[y][x], x*1, y*1);
+		}
+	}
 	
 	context.font="72px Verdana";	
 	context.fillStyle = "#FF0";	

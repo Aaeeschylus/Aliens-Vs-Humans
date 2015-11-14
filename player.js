@@ -1,35 +1,16 @@
 var Player = function() {
 	this.lives = 3;
-	this.images = [];
-	this.images[0] = new Image();
-	this.images[0].src = "ship01.png";
-	this.images[1] = new Image();
-	this.images[1].src = "ship02.png"
-	this.images[2] = new Image();
-	this.images[2].src = "ship16.png"
-
-	this.upgradeLevel = 0;
-	
+	this.image = new Image();
+	this.image.src = "player_ship.png";
 	this.position = new Vector2();
 	this.position.set( SCREEN_WIDTH/2, SCREEN_HEIGHT - 100 );
-	this.width = 44;
-	this.height = 49;
+	this.width = 68;
+	this.height = 58;
 	this.cooldownTimer = 0;
 };
 
 Player.prototype.update = function(deltaTime)
-{
-	if(keyboard.isKeyDown(keyboard.KEY_1) == true) {
-		this.upgradeLevel = 0;
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_2) == true) {
-		this.upgradeLevel = 1;
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_3) == true) {
-		this.upgradeLevel = 2;
-	}
-
-	
+{	
 	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true) {
 		if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
 			if(this.position.x >= 40) 
@@ -57,6 +38,7 @@ Player.prototype.update = function(deltaTime)
 		}
 		if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
 			playerShoot();
+			sfxFire.play();
 		}
 	}
 	else {
@@ -86,6 +68,7 @@ Player.prototype.update = function(deltaTime)
 		}
 		if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
 			playerShoot();
+			sfxFire.play();
 		}
 	}
 }
@@ -93,5 +76,5 @@ Player.prototype.update = function(deltaTime)
 
 Player.prototype.draw = function()
 {
-	context.drawImage(this.images[this.upgradeLevel], this.position.x-(this.width/2), this.position.y-(this.height/2));
+	context.drawImage(this.image, this.position.x-(this.width/2), this.position.y-(this.height/2));
 }

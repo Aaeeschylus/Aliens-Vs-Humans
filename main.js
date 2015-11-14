@@ -34,8 +34,42 @@ livesImage.src = "ship01small.png";
 var backgroundOffset = 0;
 
 
+var splashScreen = [];
+var winScreen = [];
+var loseScreen = [];
+
 var backgroundImage = document.createElement("img");
 backgroundImage.src = "background01.png";
+
+var splashImage = document.createElement("img");
+splashImage.src = "splashscreenimage.png";
+
+var winImage = document.createElement("img");
+winImage.src = "winscreenimage.png";
+
+var loseImage = document.createElement("img");
+loseImage.src = "losescreenimage.png";
+
+for(var y=0;y<1;y++)
+{
+	splashScreen[y] = [];
+	for(var x=0; x<1; x++)
+		splashScreen[y][x] = splashImage;
+}
+
+for(var y=0;y<1;y++)
+{
+	winScreen[y] = [];
+	for(var x=0; x<1; x++)
+		winScreen[y][x] = winImage;
+}
+
+for(var y=0;y<1;y++)
+{
+	loseScreen[y] = [];
+	for(var x=0; x<1; x++)
+		loseScreen[y][x] = loseImage;
+}
 
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
@@ -62,6 +96,8 @@ function rand(floor, ceil)
 	return Math.floor( (Math.random()* (ceil-floor)) +floor);
 }
 
+
+
 var totalTime = 0;
 
 function totalTimeUpdate(){
@@ -78,14 +114,31 @@ var hits = 0
 var sps = 0;
 var kills = 0;
 
+var totalTime = 0;
+
+var BULLET_SPEED = 3;
+
+var explosions = [];
 var enemies = [];
 var bullets = [];
+var bosses = [];
+
+sfxFire = new Howl(
+{
+	urls:["laser.wav"],
+	buffer: true,
+	volume: 1,
+	onend: function() 
+	{
+		isSfxPlaying = false;
+	}
+});
 
 var deltaTime = getDeltaTime();
 
 var PLAYER_SPEED = 4;
 
-var DEBUG = 1;
+var DEBUG = 0;
 
 var stateManager = new StateManager();
 
@@ -93,10 +146,11 @@ stateManager.pushState( new SplashState() );
 
 function playerShoot()
 {
+	
 	var BULLET_STREAM_COUNT = 10;
 	var BULLET_STREAM_STRIDE = 80;
 	for (var i = 0; i < BULLET_STREAM_COUNT; ++i) {
-		var bullet = new Bullet(player.position.x + 0.6, player.position.y - (i / BULLET_STREAM_COUNT) * BULLET_STREAM_STRIDE);
+		var bullet = new Bullet(player.position.x +5.6, player.position.y - (i / BULLET_STREAM_COUNT) * BULLET_STREAM_STRIDE);
 		bullets.push(bullet);
 	}
 }
@@ -150,6 +204,13 @@ function NenemySpawnZigZag(zigZagPosition, Sdirection, sidedistance, sidespeed, 
 	sps += 1;
 }
 
+function BossSpawn()
+{
+	var boss01 = new BOSS01 ();
+	boss01.spawn = true;
+	bosses.push(boss01);
+	sps += 1;
+}
 
 function run() {
 	context.fillStyle = "#ccc";

@@ -5,10 +5,7 @@ var spawn3 = false;
 var spawn4 = false;
 var spawn5 = false;
 var spawn6 = false;
-var spawn7 = false;
-var spawn8 = false;
-var spawn9 = false;
-var spawn10 = false;
+var bossSpawn = false;
 
 function level1Update(){
 	if (levelseconds == 1.5 && spawn1 == false)
@@ -61,7 +58,7 @@ function level1Update(){
 	}	
 	
 	if(keyboard.isKeyDown(keyboard.KEY_1) == true) {
-		levelseconds = 40.5;
+		levelseconds = 72;
 	}
 	
 	if (levelseconds == 27.5 && spawn4 == false)
@@ -116,70 +113,67 @@ function level1Update(){
 		spawn5 = false;
 	}	
 	
-	// if (levelseconds == 1.5 && spawn6 == false)
-		// {
-		// fnzigzag1 = setInterval(function(){ 
-			// NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 100, 70, 200);
-			// }, 1000);
-			// spawn6 = true;
-		// }
-	// if (levelseconds == 8)
-	// {
-		// clearInterval(fnzigzag1);
-		// spawn6 = false;
-	// }	
+	if (levelseconds == 51.5 && spawn6 == false)
+	{
+		fnspawn6 = setInterval(function(){ 
+			NAenemySpawn(-40, 250, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, 250, 13.2, 10);
+			NAenemySpawn(-40, 50, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, 50, 13.2, 10);
+			NAenemySpawn(-40, 150, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, 150, 13.2, 10);
+			NAenemySpawn(-40, -50, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, -50, 13.2, 10);
+			NAenemySpawn(-40, -150, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, -150, 13.2, 10);
+			NAenemySpawn(-40, -250, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, -250, 13.2, 10);
+			NAenemySpawn(-40, -350, 12, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, -350, 13.2, 10);
+			NAenemySpawn(-40, 50, 11, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, 100, 14.13, 10);
+			NAenemySpawn(-40, 150, 11, 10);
+			NAenemySpawn(SCREEN_WIDTH + 40, 200, 14.13, 10);
+			NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 200, 140, i, 10);
+			NenemySpawnZigZag(SCREEN_WIDTH/2, 1, 200, 140, j, 10);
+			NenemySpawn(SCREEN_WIDTH/16, 10);
+			NenemySpawn(2*SCREEN_WIDTH/16, 10);
+			NenemySpawn(3*SCREEN_WIDTH/16, 10);
+			NenemySpawn(4*SCREEN_WIDTH/16, 10);
+			NenemySpawn(5*SCREEN_WIDTH/16, 10);
+			NenemySpawn(6*SCREEN_WIDTH/16, 10);
+			NenemySpawn(7*SCREEN_WIDTH/16, 10);
+			NenemySpawn(8*SCREEN_WIDTH/16, 10);
+			NenemySpawn(9*SCREEN_WIDTH/16, 10);
+			NenemySpawn(10*SCREEN_WIDTH/16, 10);
+			NenemySpawn(11*SCREEN_WIDTH/16, 10);
+			NenemySpawn(12*SCREEN_WIDTH/16, 10);
+			NenemySpawn(13*SCREEN_WIDTH/16, 10);
+			NenemySpawn(14*SCREEN_WIDTH/16, 10);
+			NenemySpawn(15*SCREEN_WIDTH/16, 10);
+			i += 10;
+			j -= 10;
+		}, 300);
+		spawn6 = true;
+	}
+	if (levelseconds == 60)
+	{
+		clearInterval(fnspawn6);
+		spawn6 = false;
+	}	
 	
-	// if (levelseconds == 1.5 && spawn7 == false)
-		// {
-		// fnzigzag1 = setInterval(function(){ 
-			// NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 100, 70, 200);
-			// }, 1000);
-			// spawn7 = true;
-		// }
-	// if (levelseconds == 8)
-	// {
-		// clearInterval(fnzigzag1);
-		// spawn7 = false;
-	// }	
-	
-	// if (levelseconds == 1.5 && spawn8 == false)
-		// {
-		// fnzigzag1 = setInterval(function(){ 
-			// NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 100, 70, 200);
-			// }, 1000);
-			// spawn8 = true;
-		// }
-	// if (levelseconds == 8)
-	// {
-		// clearInterval(fnzigzag1);
-		// spawn8 = false;
-	// }	
-	
-	// if (levelseconds == 1.5 && spawn9 == false)
-		// {
-		// fnzigzag1 = setInterval(function(){ 
-			// NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 100, 70, 200);
-			// }, 1000);
-			// spawn9 = true;
-		// }
-	// if (levelseconds == 8)
-	// {
-		// clearInterval(fnzigzag1);
-		// spawn9 = false;
-	// }	
-	
-	// if (levelseconds == 1.5 && spawn10 == false)
-		// {
-		// fnzigzag1 = setInterval(function(){ 
-			// NenemySpawnZigZag(SCREEN_WIDTH/2 , -1, 100, 70, 200);
-			// }, 1000);
-			// spawn10 = true;
-		// }
-	// if (levelseconds == 8)
-	// {
-		// clearInterval(fnzigzag1);
-		// spawn10 = false;
-	// }	
+	if (levelseconds == 72.5 && bossSpawn == false)
+	{
+		fnbossSpawn = setInterval(function(){ 
+			BossSpawn();	
+		}, 400);
+		bossSpawn = true;
+	}
+	if (levelseconds == 73)
+	{
+		clearInterval(fnbossSpawn);
+		bossSpawn = false;
+	}	
 	
 }
 

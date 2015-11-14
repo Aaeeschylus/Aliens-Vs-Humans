@@ -28,6 +28,16 @@ GameLevel1.prototype.update = function(dt)
 	{
 		enemies[i].update(deltaTime);
 	}
+
+	for(var i=0; i<bosses.length; i++)
+	{
+		bosses[i].update(deltaTime);
+	}
+	
+	for(var i=0; i<explosions.length; i++)
+	{
+		explosions[i].update(deltaTime);
+	}
 	
 	for(var i=0; i<bullets.length; i++)
 	{
@@ -59,6 +69,22 @@ GameLevel1.prototype.update = function(dt)
 				
 			} 
 		}
+		for(var j=0; j<bosses.length; j++)
+		{
+			if(intersects( bullets[i].position.x, bullets[i].position.y, bullets[i].width, bullets[i].height, bosses[j].position.x, bosses[j].position.y, bosses[j].width, bosses[j].height) == true)
+			{
+				// kill both the bullet and the enemy
+				bosses[j].health -= 1;
+				if(bosses[j].health <= 0)
+				{
+					kills += 1;
+					bosses.splice(j,1);
+					stateManager.switchState( new winState() );
+				}
+				hit = true;
+				hits += 1;
+			} 
+		}
 		if(hit == true)
 		{
 			bullets.splice(i, 1);
@@ -76,7 +102,23 @@ GameLevel1.prototype.update = function(dt)
 			player.lives -= 1;
 			if (player.lives == 0)
 			{
-				stateManager.pushState( new SplashState() );
+				stateManager.pushState( new loseState() );
+			}
+			hitPlayer = false;
+			break;
+		}
+	}
+	
+	for(var i=0; i<bosses.length; i++)
+	{
+		var hitPlayer = intersects(bosses[i].position.x, bosses[i].position.y, bosses[i].width, bosses[i].height, player.position.x, player.position.y, player.width, player.height)
+		if(hitPlayer == true)
+		{
+			player.position.set( SCREEN_WIDTH/2, SCREEN_HEIGHT - 100);
+			player.lives -= 1;
+			if (player.lives == 0)
+			{
+				stateManager.pushState( new loseState() );
 			}
 			hitPlayer = false;
 			break;
@@ -109,6 +151,16 @@ GameLevel1.prototype.draw = function()
 		enemies[i].draw();
 	}
 	
+	for(var i=0; i<bosses.length; i++)
+	{
+		bosses[i].draw();
+	}
+	
+	for(var i=0; i<explosions.length; i++)
+	{
+		explosions[i].draw();
+	}
+	
 	context.fillStyle = 'white';
 	context.strokeStyle = 'black';
 	context.font="24px Verdana";
@@ -116,12 +168,12 @@ GameLevel1.prototype.draw = function()
 	context.strokeText("Lives: ", 20, 40, 200);
 
 	context.font="24px Verdana";
-	context.fillText("Kills: " + kills, SCREEN_WIDTH - 125, 40, 200);
-	context.strokeText("Kills: " + kills, SCREEN_WIDTH -  125, 40, 200);
+	context.fillText("Kills: " + kills, SCREEN_WIDTH - 150, 40, 200);
+	context.strokeText("Kills: " + kills, SCREEN_WIDTH -  150, 40, 200);
 	
 	for(var i=0; i<player.lives; i++)
 	{
-		context.drawImage(livesImage, 100 + ((livesImage.width+2)*i), 20)
+		context.drawImage(livesImage, 100 + ((livesImage.width+2)*i), 23)
 	}
 	
 	player.draw();

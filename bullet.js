@@ -16,6 +16,7 @@ var Bullet = function(x, y)
 Bullet.prototype.update = function(deltaTime)
 {
 	this.position.y = Math.floor(this.position.y + (0.001 * this.velocity.y));
+	this.position.x = Math.floor(this.position.x + (0.001 * this.velocity.x));
 } 
 Bullet.prototype.draw = function()
 {
